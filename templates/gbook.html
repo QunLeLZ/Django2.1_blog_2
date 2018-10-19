@@ -1,0 +1,125 @@
+<!doctype html>
+{% load static %}
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>首页_无此人的个人博客 - 一个努力爬坑的IT男的个人博客网站</title>
+<meta name="keywords" content="个人博客,无此人个人博客" />
+<meta name="description" content="无此人个人博客，一个努力爬坑的IT男的个人博客网站。" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="{% static 'css/base.css' %}" rel="stylesheet">
+<link href="{% static 'css/index.css' %}" rel="stylesheet">
+<link href="{% static 'css/m.css' %}" rel="stylesheet">
+
+<!--[if lt IE 9]>
+<script src="js/modernizr.js"></script>
+<![endif]-->
+<script>
+window.onload = function ()
+{
+	var oH2 = document.getElementsByTagName("h2")[0];
+	var oUl = document.getElementsByTagName("ul")[0];
+	oH2.onclick = function ()
+	{
+		var style = oUl.style;
+		style.display = style.display == "block" ? "none" : "block";
+		oH2.className = style.display == "block" ? "open" : ""
+	}
+var obj=null;
+var As=document.getElementById('starlist').getElementsByTagName('a');
+obj = As[0];
+for(i=1;i<As.length;i++){if(window.location.href.indexOf(As[i].href)>=0)
+obj=As[i];}
+obj.id='selected'
+}
+</script>
+</head>
+<body>
+<header>
+  <div class="tophead">
+    <div class="logo"><a href="{% url 'index' %}">无此人个人博客</a></div>
+    <div id="mnav">
+      <h2><span class="navicon"></span></h2>
+      <ul>
+        <li><a href="{% url 'index' %}">网站首页</a></li>
+        <li><a href="{% url 'about' %}">关于我</a></li>
+        <li><a href="{% url 'articles' %}">学无止境</a></li>
+        <li><a href="{% url 'gbook' %}">留言</a></li>
+      </ul>
+    </div>
+    <nav class="topnav" id="topnav">
+      <ul>
+        <li><a href="{% url 'index' %}">网站首页</a></li>
+        <li><a href="{% url 'about' %}">关于我</a></li>
+        <li><a href="{% url 'articles' %}">学无止境</a></li>
+        <li><a href="{% url 'gbook' %}">留言</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<article>
+  <h1 class="t_nav"><span>像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。</span><a href="{% url 'index' %}" class="n1">网站首页</a><a href="{% url 'gbook' %}" class="n2">留言板</a></h1>
+  <div class="ab_box">
+    <div class="leftbox">
+      <div class="newsview">
+        <div class="gbook">
+            {% for form in form_list %}
+            <div class="fb">
+                <ul>
+                    <p class="fbtime"><span>
+                     {{ form.create_time.year }}-{{ form.create_time.month }}-{{ form.create_time.day }}</span> {{ form.name }}</p>
+                    <p class="fbinfo">{{ form.text }}</p>
+                </ul>
+            </div>
+            {% endfor %}
+            <div class="gbox">
+      <form action="{% url 'gbook' %}" method="post" name="form1" id="form1">
+          {% csrf_token %}
+        <p> <strong>来说点儿什么吧...</strong></p>
+          <p><span>您的姓名:</span>
+            {{ form_gbook.name }}
+            {{ form_gbook.errors }}
+          </p>
+          <p><span>联系邮箱:</span>
+              {{ form_gbook.email }}
+              {{ form_gbook.errors }}
+          </p>
+        <p><span class="tnr">留言内容:</span>
+            {{ form_gbook.text }}
+            {{ form_gbook.errors }}
+        </p>
+        <p>
+          <input type="submit" name="Submit3" value="提交" />
+        </p>
+      </form>
+    </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="rightbox">
+      <div class="aboutme">
+        <h2 class="hometitle">关于我</h2>
+        <div class="avatar"> <img src="{% static 'images/avatar.jpg' %}"> </div>
+        <div class="ab_con">
+          <p>网名：无此人 </p>
+          <p>职业：学生 </p>
+          <p>个人微信：a9276985676</p>
+          <p>邮箱：a9276985676@qq.com</p>
+        </div>
+      </div>
+      <div class="weixin">
+        <h2 class="hometitle">微信关注</h2>
+        <ul>
+          <img src="{% static 'images/wx.jpg' %}">
+        </ul>
+      </div>
+    </div>
+  </div>
+</article>
+<footer>
+  <p>Design by <a href="{% url 'index' %}">无此人个人博客</a></p>
+</footer>
+<script src="{% static 'js/nav.js' %}"></script>
+</body>
+</html>

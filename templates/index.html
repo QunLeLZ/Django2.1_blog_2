@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block show %}
+<div class="picshow">
+  <ul>
+    <li><a href="/"><i><img src="{% static 'images/b01.jpg' %}"></i>
+      <div class="font">
+        <h3>个人博客模板《早安》</h3>
+      </div>
+      </a></li>
+    <li><a href="/"><i><img src="{% static 'images/b02.jpg' %}"></i>
+      <div class="font">
+        <h3>个人博客模板《早安》</h3>
+      </div>
+      </a></li>
+    <li><a href="/"><i><img src="{% static 'images/b03.jpg' %}"></i>
+      <div class="font">
+        <h3>个人博客模板《早安》</h3>
+      </div>
+      </a></li>
+    <li><a href="/"><i><img src="{% static 'images/b04.jpg' %}"></i>
+      <div class="font">
+        <h3>个人博客模板《早安》</h3>
+      </div>
+      </a></li>
+    <li><a href="/"><i><img src="{% static 'images/b05.jpg' %}"></i>
+      <div class="font">
+        <h3>个人博客模板《早安》</h3>
+      </div>
+      </a></li>
+  </ul>
+</div>
+{% endblock %}
+{% block main %}
+<div class="blogs">
+    {% for post in post_list %}
+    <li> <span class="blogpic"><a href="{% url 'detail' post.id %}"><img src="{% static 'images/text01.jpg' %}"></a></span>
+      <h3 class="blogtitle"><a href="{% url 'detail' post.id %}">{{ post.title }}</a></h3>
+      <div class="bloginfo">
+        <p>{{ post.body|truncatechars:100 }}</p>
+      </div>
+      <div class="autor"><span class="lm"><a href="{% url 'search_category' post.category_id %}" title="类别" target="_blank" class="classname">{{ post.category }}</a></span><span class="dtime">{{ post.create_time }}</span><span class="viewnum">浏览（<a href="/">{{ post.views }}</a>）</span><span class="readmore"><a href="{% url 'detail' post.id %}">阅读原文</a></span></div>
+    </li>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+<h1 class="t_nav"><span>不要轻易放弃。学习成长的路上，我们长路漫漫，只因学无止境。</span><a href="{% url 'index' %}" class="n1">网站首页</a><a href="{% url 'search_category' post.category_id %}" class="n2">{{ post.category }}</a></h1>
+  <div class="infos">
+    <div class="newsview">
+      <h3 class="news_title">{{ post.title }}</h3>
+      <div class="news_author"><span class="au01"></span><span class="au02">{{ post.create_time }}</span><span class="au03">共<b>{{ post.views }}</b>人围观</span></div>
+      <div class="tags">
+          {% for tag in tags %}
+          <a href="{% url 'search_tag' tag %}" target="_blank">{{ tag }}</a>
+          {% endfor %}
+      </div>
+     <div class="news_about"><strong>简介</strong>{{ post.abstract }}</div>
+      {% autoescape off %}
+      <div class="news_infos" id="newsp">
+        {{ post.body | linebreaksbr }}
+      </div>
+      {% endautoescape %}
+     </div>
+    </div>
+  </div>
+{% endblock %}

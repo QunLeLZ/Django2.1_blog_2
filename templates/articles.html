@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block main %}
+<h1 class="t_nav"><span>不要轻易放弃。学习成长的路上，我们长路漫漫，只因学无止境。</span><a href="{% url 'index' %}" class="n1">网站首页</a><a href="{% url 'articles' %}" class="n2">学无止境</a></h1>
+<div class="blogs">
+    <div class="mt20"></div>
+    {% for post in post_list %}
+    <li> <span class="blogpic"><a href="{% url 'detail' post.id %}"><img src="{% static 'images/text01.jpg' %}"></a></span>
+      <h3 class="blogtitle"><a href="{% url 'detail' post.id %}">{{ post.title }}</a></h3>
+      <div class="bloginfo">
+        <p>{{ post.body|truncatechars:100 }}</p>
+      </div>
+      <div class="autor"><span class="lm"><a href="{% url 'search_category' post.category_id %}" title="类别" target="_blank" class="classname">{{ post.category }}</a></span><span class="dtime">{{ post.create_time }}</span><span class="viewnum">浏览（<a href="/">{{ post.views }}</a>）</span><span class="readmore"><a href="{% url 'detail' post.id %}">阅读原文</a></span></div>
+    </li>
+    {% endfor %}
+    <div class="pagelist">
+    {% if post_list.object_list and post_list.paginator.num_pages > 1 %}
+        {% if post_list.has_previous %}
+            <a title="Total record" href="/articles/?page={{ post_list.previous_page_number }}"><b>上一页</b> </a>
+        {% endif %}
+        {% for pg in post_list.paginator.page_range %}
+            {% if post_list.number == pg %}
+                <a style="color: red" class="active"  title="Total record" href="/articles/?page={{ pg }}">{{ pg }}</a>
+            {% else %}
+                <a title="Total record" href="/articles/?page={{ pg }}">{{ pg }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if post_list.has_next %}
+            <a title="Total record" href="/articles/?page={{ post_list.next_page_number }}"><b>下一页</b> </a>
+        {% endif %}
+    {% endif %}
+    </div>
+</div>
+
+{% endblock %}

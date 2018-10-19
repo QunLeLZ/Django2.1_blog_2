@@ -1,0 +1,126 @@
+<!doctype html>
+{% load static %}
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>首页_无此人的个人博客 - 一个努力爬坑的IT男的个人博客网站</title>
+<meta name="keywords" content="个人博客,无此人个人博客" />
+<meta name="description" content="无此人个人博客，一个努力爬坑的IT男的个人博客网站。" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="{% static 'css/base.css' %}" rel="stylesheet">
+<link href="{% static 'css/index.css' %}" rel="stylesheet">
+<link href="{% static 'css/m.css' %}" rel="stylesheet">
+
+<!--[if lt IE 9]>
+<script src="{% static 'js/modernizr.js' %}"></script>
+<![endif]-->
+<script>
+window.onload = function ()
+{
+	var oH2 = document.getElementsByTagName("h2")[0];
+	var oUl = document.getElementsByTagName("ul")[0];
+	oH2.onclick = function ()
+	{
+		var style = oUl.style;
+		style.display = style.display == "block" ? "none" : "block";
+		oH2.className = style.display == "block" ? "open" : ""
+	}
+}
+</script>
+</head>
+<body>
+<header>
+  <div class="tophead">
+    <div class="logo"><a href="/">无此人个人博客</a></div>
+    <div id="mnav">
+      <h2><span class="navicon"></span></h2>
+      <ul>
+        <li><a href="{% url 'index' %}">网站首页</a></li>
+        <li><a href="{% url 'about' %}">关于我</a></li>
+        <li><a href="{% url 'articles' %}">学无止境</a></li>
+        <li><a href="{% url 'gbook' %}">留言</a></li>
+      </ul>
+    </div>
+    <nav class="topnav" id="topnav">
+      <ul>
+        <li><a href="{% url 'index' %}">网站首页</a></li>
+        <li><a href="{% url 'about' %}">关于我</a></li>
+        <li><a href="{% url 'articles' %}">学无止境</a></li>
+        <li><a href="{% url 'gbook' %}">留言</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    {% block show %}
+    {% endblock %}
+<article>
+  {% block main %}
+  {% endblock main %}
+  <div class="sidebar">
+    <div class="search">
+      <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
+        <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text">
+        <input name="show" value="title" type="hidden">
+        <input name="tempid" value="1" type="hidden">
+        <input name="tbname" value="news" type="hidden">
+        <input name="Submit" class="input_submit" value="搜索" type="submit">
+      </form>
+    </div>
+    <div class="lmnav">
+      <h2 class="hometitle">栏目导航</h2>
+      <ul class="navbor">
+        <li><a href="{% url 'about' %}">关于我</a></li>
+        <li><a href="{% url 'articles' %}">学无止境</a>
+          {% for category in category_list %}
+          <ul>
+            <li><a href="{% url 'search_category' category.id %}">{{ category }}</a></li>
+          </ul>
+          {% endfor %}
+        <li><a href="{% url 'gbook' %}">留言</a></li>
+        </li>
+      </ul>
+    </div>
+    <div class="paihang">
+      <h2 class="hometitle">最新发布</h2>
+      <ul>
+        {% for new in new_list %}
+        <li><b><a href="{% url 'detail' new.id %}" target="_blank">{{ new.title }}</a></b>
+          <p><i><img src="{% static 'images/t01.jpg' %}"></i>{{ new.abstract|truncatechars:60 }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="cloud">
+      <h2 class="hometitle">标签云</h2>
+      <ul>
+        {% for tag in tag_list %}
+        <a href="{% url 'search_tag' tag %}" target="_blank">{{ tag }}</a>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="paihang">
+      <h2 class="hometitle">归档</h2>
+      <ul>
+        {% regroup date_list by year as dates_by_year %}
+          {% for year in dates_by_year %}
+            {% regroup year.list by month as dates_by_month %}
+              {% for month in dates_by_month %}
+        <li><a href="{% url 'archives' year=year.grouper month=month.grouper %}">{{ year.grouper }}年{{ month.grouper }}月</a> </li>
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="weixin">
+      <h2 class="hometitle">个人微信</h2>
+      <ul>
+        <img src="{% static 'images/wx.jpg' %}">
+      </ul>
+    </div>
+  </div>
+</article>
+<footer>
+  <p>Design by <a href="/">无此人个人博客</a></p>
+</footer>
+<script src="{% static 'js/nav.js' %}"></script>
+</body>
+</html>
