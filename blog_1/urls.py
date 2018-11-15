@@ -16,8 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from blog import views
-from django.conf.urls.static import static
-from django.conf import settings
 from django.conf.urls import include
 
 urlpatterns = [
@@ -31,9 +29,5 @@ urlpatterns = [
     path('gbook/', views.gbook, name='gbook'),
     path('about/', views.about, name='about'),
     path('gbook/<int:id>/', views.gbook, name='gbook'),
-    path('mdeditor/', include('mdeditor.urls')),
+    path('markdownx/', include('markdownx.urls')),
 ]
-
-if settings.DEBUG:
-    # static files (images, css, javascript, etc.)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -11,7 +11,7 @@
     <li> <span class="blogpic"><a href="{% url 'detail' post.id %}"><img src="{% static 'images/text01.jpg' %}"></a></span>
       <h3 class="blogtitle"><a href="{% url 'detail' post.id %}">{{ post.title }}</a></h3>
       <div class="bloginfo">
-        <p>{{ post.body|truncatechars:100 }}</p>
+        <p>{{ post.abstract | truncatechars:100 }}</p>
       </div>
       <div class="autor"><span class="lm"><a href="{% url 'search_category' post.category_id %}" title="类别" target="_blank" class="classname">{{ post.category }}</a></span><span class="dtime">{{ post.create_time }}</span><span class="viewnum">浏览（<a href="/">{{ post.views }}</a>）</span><span class="readmore"><a href="{% url 'detail' post.id %}">阅读原文</a></span></div>
     </li>

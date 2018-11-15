@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '#da9ifw23mje$(_)ec=q!jr!8&71-&fp+4fajp+zqt1()*p6wv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'mdeditor',
+    'markdownx',
 ]
 
 MIDDLEWARE = [
@@ -133,6 +133,3 @@ STATIC_URL = '/static/'
 PAGE_NUM = 5
 
 STATIC_ROOT = os.path.join(BASE_DIR,'all_static')
-
-MEDIA_ROOT = os.path.join(BASE_DIR,'uploads')
-MEDIA_URL = '/media/'

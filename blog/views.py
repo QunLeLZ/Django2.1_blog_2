@@ -23,11 +23,11 @@ def index(request):
 
 def detail(request,id):
     post = get_object_or_404(Article,id=str(id))
-    post.body = markdown.markdown(post.body,extensions=[
-        'markdown.extensions.extra',
-        'markdown.extensions.codehilite',
-        'markdown.extensions.toc',
-    ],safe_mode=True,enable_attributes=False)
+    #post.body = markdown.markdown(post.body,extensions=[
+    #    'markdown.extensions.extra',
+    #    'markdown.extensions.codehilite',
+    #    'markdown.extensions.toc',
+    #],safe_mode=True,enable_attributes=False)
     post.viewed()
     post_tag = post.tags.all()
     context = {'post': post,

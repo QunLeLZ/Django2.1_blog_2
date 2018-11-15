@@ -14,11 +14,9 @@
           {% endfor %}
       </div>
      <div class="news_about"><strong>简介</strong>{{ post.abstract }}</div>
-      {% autoescape off %}
       <div class="news_infos" id="newsp">
         {{ post.body | safe }}
       </div>
-      {% endautoescape %}
      </div>
     </div>
   </div>
