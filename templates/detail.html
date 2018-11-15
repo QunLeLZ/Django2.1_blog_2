@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block main %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/monokai.css' %}">
 <h1 class="t_nav"><span>不要轻易放弃。学习成长的路上，我们长路漫漫，只因学无止境。</span><a href="{% url 'index' %}" class="n1">网站首页</a><a href="{% url 'search_category' post.category_id %}" class="n2">{{ post.category }}</a></h1>
   <div class="infos">
     <div class="newsview">
@@ -15,7 +16,7 @@
      <div class="news_about"><strong>简介</strong>{{ post.abstract }}</div>
       {% autoescape off %}
       <div class="news_infos" id="newsp">
-        {{ post.body | linebreaksbr }}
+        {{ post.body | safe }}
       </div>
       {% endautoescape %}
      </div>

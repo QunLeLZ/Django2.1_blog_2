@@ -25,7 +25,7 @@ SECRET_KEY = '#da9ifw23mje$(_)ec=q!jr!8&71-&fp+4fajp+zqt1()*p6wv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'mdeditor',
 ]
 
 MIDDLEWARE = [
@@ -76,9 +77,17 @@ WSGI_APPLICATION = 'blog_1.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
+    #'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #}
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	'ENGINE': 'django.db.backends.mysql',
+	'NAME': 'blog',
+	'HOST': 'localhost',
+	'PORT': '3306',
+	'USER': 'blog',
+	'PASSWORD': 'lz1997118',
     }
 }
 
@@ -122,3 +131,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 PAGE_NUM = 5
+
+STATIC_ROOT = os.path.join(BASE_DIR,'all_static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'uploads')
+MEDIA_URL = '/media/'

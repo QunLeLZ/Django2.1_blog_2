@@ -6,27 +6,27 @@
   <ul>
     <li><a href="/"><i><img src="{% static 'images/b01.jpg' %}"></i>
       <div class="font">
-        <h3>愿</h3>
+        <h3>安寻安放</h3>
       </div>
       </a></li>
     <li><a href="/"><i><img src="{% static 'images/b02.jpg' %}"></i>
       <div class="font">
-        <h3>得</h3>
+        <h3>不卑不亢</h3>
       </div>
       </a></li>
     <li><a href="/"><i><img src="{% static 'images/b03.jpg' %}"></i>
       <div class="font">
-        <h3>一</h3>
+        <h3>重剑无锋</h3>
       </div>
       </a></li>
     <li><a href="/"><i><img src="{% static 'images/b04.jpg' %}"></i>
       <div class="font">
-        <h3>人</h3>
+        <h3>大巧不工</h3>
       </div>
       </a></li>
     <li><a href="/"><i><img src="{% static 'images/b05.jpg' %}"></i>
       <div class="font">
-        <h3>心</h3>
+        <h3>！！！</h3>
       </div>
       </a></li>
   </ul>
@@ -38,7 +38,7 @@
     <li> <span class="blogpic"><a href="{% url 'detail' post.id %}"><img src="{% static 'images/text01.jpg' %}"></a></span>
       <h3 class="blogtitle"><a href="{% url 'detail' post.id %}">{{ post.title }}</a></h3>
       <div class="bloginfo">
-        <p>{{ post.body|truncatechars:100 }}</p>
+        <p>{{ post.abstract | truncatechars:100 }}</p>
       </div>
       <div class="autor"><span class="lm"><a href="{% url 'search_category' post.category_id %}" title="类别" target="_blank" class="classname">{{ post.category }}</a></span><span class="dtime">{{ post.create_time }}</span><span class="viewnum">浏览（<a href="/">{{ post.views }}</a>）</span><span class="readmore"><a href="{% url 'detail' post.id %}">阅读原文</a></span></div>
     </li>
