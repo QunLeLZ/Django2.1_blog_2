@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
+from mdeditor.fields import MDTextField
 
 # Create your models here.
 class Category(models.Model):
@@ -26,7 +27,7 @@ class Tag(models.Model):
 
 class Article(models.Model):
     title = models.CharField(verbose_name='标题',max_length=70)
-    body = models.TextField(verbose_name='正文',blank=True,null=True)
+    body = MDTextField(verbose_name='正文',blank=True,null=True)
     abstract = models.TextField(verbose_name='简介',blank=True,null=True)
     create_time = models.DateTimeField(verbose_name='创建时间',default=now)
     views = models.PositiveIntegerField(verbose_name='浏览量',default=0)

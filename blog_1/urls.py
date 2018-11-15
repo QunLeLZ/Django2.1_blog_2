@@ -21,7 +21,7 @@ from django.conf import settings
 from django.conf.urls import include
 
 urlpatterns = [
-    path('leizheng_admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('detail/<int:id>/', views.detail, name='detail'),
     path('articles/', views.articles, name='articles'),
