@@ -12,7 +12,7 @@ new_list = Article.objects.order_by('-create_time')[:5]
 dates = Article.objects.datetimes('create_time','month',order='DESC')
 
 def index(request):
-    posts = Article.objects.all()[:5]
+    posts = Article.objects.all()[:10]
     context = {'post_list':posts,
                'category_list': categories,
                'tag_list': tags,
@@ -23,11 +23,11 @@ def index(request):
 
 def detail(request,id):
     post = get_object_or_404(Article,id=str(id))
-    #post.body = markdown.markdown(post.body,extensions=[
-    #    'markdown.extensions.extra',
-    #    'markdown.extensions.codehilite',
-    #    'markdown.extensions.toc',
-    #],safe_mode=True,enable_attributes=False)
+    post.body = markdown.markdown(post.body,extensions=[
+        'markdown.extensions.extra',
+        'markdown.extensions.codehilite',
+        'markdown.extensions.toc',
+    ])
     post.viewed()
     post_tag = post.tags.all()
     context = {'post': post,
@@ -41,7 +41,7 @@ def detail(request,id):
 
 def articles(request):
     posts = Article.objects.all()
-    paginator = Paginator(posts, 2)
+    paginator = Paginator(posts, 10)
     try:
         page = request.GET.get('page')
         post_list = paginator.page(page)

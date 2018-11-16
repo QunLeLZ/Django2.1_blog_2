@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from blog import views
 from django.conf.urls import include
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('leizheng_admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('detail/<int:id>/', views.detail, name='detail'),
     path('articles/', views.articles, name='articles'),
@@ -29,5 +31,5 @@ urlpatterns = [
     path('gbook/', views.gbook, name='gbook'),
     path('about/', views.about, name='about'),
     path('gbook/<int:id>/', views.gbook, name='gbook'),
-    path('markdownx/', include('markdownx.urls')),
+    path('mdeditor/', include('mdeditor.urls')),
 ]

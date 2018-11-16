@@ -35,7 +35,7 @@
 {% block main %}
 <div class="blogs">
     {% for post in post_list %}
-    <li> <span class="blogpic"><a href="{% url 'detail' post.id %}"><img src="{% static 'images/text01.jpg' %}"></a></span>
+    <li> <span class="blogpic"><a href="{% url 'detail' post.id %}"><img src="{% static 'images/zd01.jpg' %}"></a></span>
       <h3 class="blogtitle"><a href="{% url 'detail' post.id %}">{{ post.title }}</a></h3>
       <div class="bloginfo">
         <p>{{ post.abstract | truncatechars:100 }}</p>

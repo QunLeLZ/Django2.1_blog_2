@@ -3,9 +3,9 @@
 <html lang="zh">
 <head>
 <meta charset="utf-8">
-<title>首页_无此人的个人博客 - 一个努力爬坑的IT男的个人博客网站</title>
-<meta name="keywords" content="个人博客,无此人个人博客" />
-<meta name="description" content="无此人个人博客，一个努力爬坑的IT男的个人博客网站。" />
+<title>首页_QunLeLZ的个人博客 - 一个努力爬坑的IT男的个人博客网站</title>
+<meta name="keywords" content="个人博客,QunLeLZ个人博客" />
+<meta name="description" content="QunLeLZ个人博客，一个努力爬坑的IT男的个人博客网站。" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="{% static 'css/base.css' %}" rel="stylesheet">
 <link href="{% static 'css/index.css' %}" rel="stylesheet">
@@ -31,7 +31,7 @@ window.onload = function ()
 <body>
 <header>
   <div class="tophead">
-    <div class="logo"><a href="/">无此人个人博客</a></div>
+    <div class="logo"><a href="/">QunLeLZ & 个人博客</a></div>
     <div id="mnav">
       <h2><span class="navicon"></span></h2>
       <ul>
@@ -85,7 +85,7 @@ window.onload = function ()
       <ul>
         {% for new in new_list %}
         <li><b><a href="{% url 'detail' new.id %}" target="_blank">{{ new.title }}</a></b>
-          <p><i><img src="{% static 'images/t01.jpg' %}"></i>{{ new.abstract|truncatechars:60 }}</p>
+          <p><i><img src="{% static 'images/t03.jpg' %}"></i>{{ new.abstract|truncatechars:50 }}</p>
         </li>
         {% endfor %}
       </ul>
@@ -119,7 +119,7 @@ window.onload = function ()
   </div>
 </article>
 <footer>
-  <p>Design by 无此人的个人博客  <a href="/">蜀ICP备18033261号-1</a></p>
+  <p>Design by QunLeLZ  <a href="/">蜀ICP备18033261号-1</a></p>
 </footer>
 <script src="{% static 'js/nav.js' %}"></script>
 </body>
